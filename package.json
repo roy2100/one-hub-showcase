@@ -1,0 +1,23 @@
+{
+  "name": "one-hub-showcase",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Promo video and write-up for One, a closed-source GUI agent host",
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "build": "remotion render src/index.ts OneHubShowcase out/one-hub-showcase.mp4 --crf=20",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "@remotion/google-fonts": "4.0.540",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
