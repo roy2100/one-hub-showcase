@@ -4,17 +4,31 @@ import { Reveal, Scene, prog } from '../anim';
 import { APP, C, MONO, SANS, SERIF } from '../theme';
 import { T } from '../timing';
 
+// Four self-hosted apps (writes approved), then five read-only sources.
 const MCP = [
   { app: 'networth', note: '投资组合' },
   { app: 'feedoverflow', note: 'RSS 阅读器' },
   { app: 'health', note: '健康记录' },
   { app: 'daylog', note: '个人日志' },
+  { app: 'email', note: '邮箱 · IMAP' },
+  { app: 'yfinance', note: '市场行情' },
+  { app: 'weather', note: '天气' },
+  { app: 'polymarket', note: '预测市场' },
+  { app: 'deploy-ops', note: '备份与安全审计' },
 ] as const;
 
-const MCP_X = 1500;
-const MCP_W = 310;
-const MCP_H = 120;
-const mcpCenter = (i: number) => 195 + i * 150 + MCP_H / 2;
+const RW = 4; // rows before the read-only group
+const MCP_X = 1480;
+const MCP_W = 390;
+const MCP_H = 64;
+const PITCH = 74;
+const GROUP_GAP = 66; // room for the 只读 label between the groups
+const RW_LABEL_Y = 176;
+const ROW0_Y = 212;
+const mcpTop = (i: number) => ROW0_Y + i * PITCH + (i >= RW ? GROUP_GAP : 0);
+const RO_LABEL_Y = mcpTop(RW) - 36;
+const mcpCenter = (i: number) => mcpTop(i) + MCP_H / 2;
+const STAGGER = 6;
 
 const Box: React.FC<{
   x: number;
@@ -91,8 +105,8 @@ export const Architecture: React.FC = () => {
             <Line
               key={i}
               d={`M1280 480 C1390 480 1390 ${mcpCenter(i)} ${MCP_X} ${mcpCenter(i)}`}
-              from={120 + i * 8}
-              to={150 + i * 8}
+              from={120 + i * STAGGER}
+              to={150 + i * STAGGER}
               color={APP[MCP[i].app]}
             />
           ))}
@@ -114,7 +128,7 @@ export const Architecture: React.FC = () => {
               boxSizing: 'border-box',
               border: `2px solid ${C.accent}`,
               borderRadius: 22,
-              background: 'rgba(201,100,66,.04)',
+              background: C.accentTint,
               position: 'relative',
             }}
           >
@@ -139,11 +153,17 @@ export const Architecture: React.FC = () => {
           <div style={{ fontSize: 20, color: C.muted }}>单用户登录 + TOTP · 会话文件是对话的唯一事实来源</div>
         </Reveal>
 
+        <Reveal at={104} style={{ position: 'absolute', left: MCP_X + 4, top: RW_LABEL_Y }}>
+          <div style={{ fontSize: 20, color: C.muted }}>自托管应用 · 写入需审批</div>
+        </Reveal>
+        <Reveal at={104 + RW * STAGGER} style={{ position: 'absolute', left: MCP_X + 4, top: RO_LABEL_Y }}>
+          <div style={{ fontSize: 20, color: C.muted }}>只读数据源</div>
+        </Reveal>
         {MCP.map((m, i) => (
           <Reveal
             key={m.app}
-            at={110 + i * 8}
-            style={{ position: 'absolute', left: MCP_X, top: 195 + i * 150, width: MCP_W, height: MCP_H }}
+            at={110 + i * STAGGER}
+            style={{ position: 'absolute', left: MCP_X, top: mcpTop(i), width: MCP_W, height: MCP_H }}
           >
             <div
               style={{
@@ -152,19 +172,16 @@ export const Architecture: React.FC = () => {
                 boxSizing: 'border-box',
                 background: C.raised,
                 border: `2px solid ${APP[m.app]}`,
-                borderRadius: 18,
-                padding: '0 24px',
+                borderRadius: 14,
+                padding: '0 20px',
                 display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                gap: 6,
+                alignItems: 'center',
+                gap: 12,
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 26, fontWeight: 600 }}>
-                <span style={{ width: 12, height: 12, borderRadius: 12, background: APP[m.app] }} />
-                {m.app}
-              </div>
-              <div style={{ fontSize: 20, color: C.muted }}>MCP server · {m.note}</div>
+              <span style={{ width: 12, height: 12, borderRadius: 12, background: APP[m.app], flexShrink: 0 }} />
+              <span style={{ fontSize: 24, fontWeight: 600 }}>{m.app}</span>
+              <span style={{ fontSize: 18, color: C.muted, marginLeft: 'auto' }}>{m.note}</span>
             </div>
           </Reveal>
         ))}
@@ -172,7 +189,7 @@ export const Architecture: React.FC = () => {
           <div style={{ fontSize: 18, color: C.muted, fontFamily: MONO }}>MCP</div>
         </Reveal>
 
-        <Reveal at={190} style={{ position: 'absolute', left: 0, right: 0, bottom: 80, textAlign: 'center' }}>
+        <Reveal at={200} style={{ position: 'absolute', left: 0, right: 0, bottom: 60, textAlign: 'center' }}>
           <div style={{ fontSize: 32, fontWeight: 500 }}>
             宿主不 import 任何应用代码，也不认识它们的数据表结构
           </div>

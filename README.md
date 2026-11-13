@@ -14,8 +14,8 @@
 [`assets/one-hub-showcase.mp4`](assets/one-hub-showcase.mp4)，约 80 秒。
 
 画面是界面的**动画复刻**，使用**虚构数据**（文章标题和待办内容都是编造的）。其中出现的工具名
-（`get_today_articles`、`add_todo`）、审批规则和整体架构都是真实的。视频制作于 2026 年 11 月初，
-只展示了最初接入的四个应用，界面配色也是当时的版本。
+（`get_today_articles`、`add_todo`）、审批规则和整体架构都是真实的。架构场景展示全部九个
+MCP server，配色与当前界面一致；界面布局仍是 2026 年 11 月初的版本。
 
 ## 它是什么
 

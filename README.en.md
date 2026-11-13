@@ -16,8 +16,8 @@ through the code in an interview.
 
 The footage is an **animated recreation** of the UI with **fictional data** (article titles
 and the todo item are made up). The tool names (`get_today_articles`, `add_todo`), the approval
-rules and the architecture are real. The video was made in early November 2026 and shows only
-the first four apps, in the colors of that time.
+rules and the architecture are real. The architecture scene shows all nine MCP
+servers and the colors match the current UI; the UI layout is still the early-November 2026 one.
 
 ## What it is
 

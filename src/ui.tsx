@@ -23,7 +23,7 @@ export const Stage: React.FC<{ children?: React.ReactNode }> = ({ children }) =>
       borderRadius: 14,
       overflow: 'hidden',
       background: C.page,
-      boxShadow: '0 24px 80px rgba(31,30,29,.18), 0 0 0 1px rgba(31,30,29,.08)',
+      boxShadow: '0 24px 80px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.08)',
       fontFamily: SANS,
       color: C.ink,
     }}
@@ -208,7 +208,7 @@ export const Composer: React.FC<{ text: string }> = ({ text }) => (
       background: C.raised,
       border: `1px solid ${C.lineStrong}`,
       borderRadius: 18,
-      boxShadow: '0 6px 24px rgba(31,30,29,.08)',
+      boxShadow: `0 1px 2px rgba(0,0,0,.04), 0 6px 24px -8px ${C.shadow}`,
       padding: '0 16px',
       display: 'flex',
       alignItems: 'center',
@@ -461,7 +461,7 @@ export const Cursor: React.FC<{ x: number; y: number; click?: number; opacity?: 
       />
     )}
     <svg width={22} height={22} viewBox="0 0 24 24" style={{ transform: 'translate(-3px,-2px)' }}>
-      <path d="M4 3l7 17 2.4-7.2L21 10z" fill={C.ink} stroke="#fff" strokeWidth={1.6} strokeLinejoin="round" />
+      <path d="M4 3l7 17 2.4-7.2L21 10z" fill={C.inkSolid} stroke="#fff" strokeWidth={1.6} strokeLinejoin="round" />
     </svg>
   </div>
 );
@@ -478,12 +478,12 @@ export const Toast: React.FC<{ at: number; text: string }> = ({ at, text }) => {
         top: 62,
         opacity: p,
         transform: `translateY(${(1 - p) * -10}px)`,
-        background: C.ink,
+        background: C.inkSolid,
         color: C.page,
         fontSize: 13,
         borderRadius: 10,
         padding: '8px 14px',
-        boxShadow: '0 8px 28px rgba(31,30,29,.25)',
+        boxShadow: '0 8px 28px rgba(0,0,0,.25)',
         zIndex: 6,
       }}
     >
