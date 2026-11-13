@@ -4,7 +4,7 @@ export const FPS = 30;
 export const T = {
   title: 120,
   arch: 300,
-  read: 480,
+  read: 660,
   approve: 600,
   gate: 420,
   caps: 330,

@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 ## Overview
 
 A **public, code-free showcase** for One (`one-hub`), a closed-source personal GUI agent. The
-repo holds a Remotion project that renders an ~82 s promo video, plus READMEs describing the
+repo holds a Remotion project that renders an 88 s promo video, plus READMEs describing the
 design. It exists so a resume can link to something clickable without opening the private
 source. The audience is recruiters and technical interviewers, mostly in mainland China.
 
@@ -47,10 +47,15 @@ After a render that should ship, copy `out/one-hub-showcase.mp4` to `assets/one-
 - `src/scenes/` — `Title`, `Architecture`, `ReadFlow`, `ApprovalFlow`, `Gate`, `Capabilities`,
   `Outro`. Each wraps itself in `Scene` (edge fade) and uses `Reveal` / `typed` / `prog` from
   `anim.tsx`.
-- `src/ui.tsx` — the recreated One UI (sidebar, top bar, composer, activity row, approval card,
-  cursor, toast) drawn on a 1200x620 `Stage` scaled 1.5x. Approval buttons are absolutely
-  positioned and `DENY_CENTER` / `APPROVE_CENTER` are exported so the cursor aims at exact
-  coordinates — move a button and those constants together.
+- `src/ui.tsx` — the recreated One UI (collapsible sidebar, footer menu, MCP panel, composer,
+  activity row, approval card and cursor) drawn on a 1200x620 `Stage` scaled 1.5x. Shared geometry
+  derives the column, dock and `DENY_CENTER` / `APPROVE_CENTER` targets from the same dimensions.
+  Pass the same `collapsed` progress to `ChatWindow` and `Composer`. `PointerAction` drives a
+  frame-based move and click; popovers and collapse must follow its click frames. Connection
+  counts, switch settings and the footer version are synthetic, never live status snapshots.
+- `ReadFlow` lasts 660 frames: tool expansion at 185–288, MCP panel at 300–393, sidebar collapse
+  at 423–429 and reopen at 463–469, answer at 480–614. `ApprovalFlow` keeps 600 frames and opens
+  the footer menu at 535, replacing the old fictional audit toast.
 - `src/theme.ts` — color tokens copied from One's published DESIGN.md (light theme), app identity
   colors, and the font stacks. DM Sans loads from Google Fonts at render time; CJK glyphs use
   macOS system faces (PingFang SC / Songti SC), so **render on a Mac**.

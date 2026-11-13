@@ -12,12 +12,14 @@ through the code in an interview.
 
 ## Video
 
-[`assets/one-hub-showcase.mp4`](assets/one-hub-showcase.mp4) — about 80 seconds.
+[`assets/one-hub-showcase.mp4`](assets/one-hub-showcase.mp4) — 88 seconds.
 
-The footage is an **animated recreation** of the UI with **fictional data** (article titles
-and the todo item are made up). The tool names (`get_today_articles`, `add_todo`), the approval
-rules and the architecture are real. The architecture scene shows all nine MCP
-servers and the colors match the current UI; the UI layout is still the early-November 2026 one.
+The footage is an **animated recreation** of the UI with **fictional data** (article titles,
+the todo item, tool counts and switch settings in the connection panel are illustrative).
+The tool names (`get_today_articles`, `add_todo`), the approval rules and the architecture
+are real. The architecture scene shows all nine MCP servers. The recreated UI follows the
+mid-November 2026 layout, including sidebar collapse and reopen, one MCP status icon and its
+app panel, a two-row composer, and the Allow / Deny approval flow.
 
 ## What it is
 

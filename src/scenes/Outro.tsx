@@ -50,7 +50,7 @@ export const Outro: React.FC = () => (
         </div>
       </Reveal>
       <Reveal at={86} style={{ position: 'absolute', bottom: 50 }}>
-        <div style={{ fontSize: 22, color: C.faint }}>本视频画面为界面的动画复刻，文章与待办内容均为虚构数据</div>
+        <div style={{ fontSize: 22, color: C.faint }}>界面为动画复刻；文章、待办及连接面板数据均为虚构演示</div>
       </Reveal>
     </div>
   </Scene>
